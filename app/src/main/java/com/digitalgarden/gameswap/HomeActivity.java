@@ -23,9 +23,7 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
-public class HomeActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
-
-    public final static String TAG = "HomeActivity";
+public class HomeActivity extends Activity_Base implements NavigationView.OnNavigationItemSelectedListener {
 
     private FirebaseAuth mAuth;
 
@@ -40,6 +38,7 @@ public class HomeActivity extends AppCompatActivity implements NavigationView.On
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                Log.d(TAG, "createUserWithEmail:success");
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });

@@ -19,9 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Created by xuejianyu on 2/15/18.
  */
 
-public class CreateAccountActivity extends AppCompatActivity {
-
-    public final static String TAG = "CreateAccountActivity";
+public class CreateAccountActivity extends Activity_Base {
 
     private FirebaseAuth mAuth;
 
