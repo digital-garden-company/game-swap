@@ -5,14 +5,6 @@
 
     <group android:checkableBehavior="single">
         <item
-            android:id="@+id/nav_create_account"
-            android:icon="@drawable/ic_menu_camera"
-            android:title="Create Account"/>
-        <item
-            android:id="@+id/nav_sign_in"
-            android:icon="@drawable/ic_menu_gallery"
-            android:title="Log In"/>
-        <item
             android:id="@+id/nav_home"
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Home"/>
@@ -38,17 +30,21 @@
             android:title="About"/>
     </group>
 
-    <item android:title="Communicate"
-        android:visible="false">
+    <item android:title="Developer Functionality"
+        android:visible="true">
         <menu>
             <item
-                android:id="@+id/nav_share"
-                android:icon="@drawable/ic_menu_share"
-                android:title="Share"/>
+                android:id="@+id/nav_create_account"
+                android:icon="@drawable/ic_menu_camera"
+                android:title="Create Account"/>
             <item
-                android:id="@+id/nav_send"
-                android:icon="@drawable/ic_menu_send"
-                android:title="Send"/>
+                android:id="@+id/nav_sign_in"
+                android:icon="@drawable/ic_menu_gallery"
+                android:title="Log In"/>
+            <item
+                android:id="@+id/nav_product_page"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Product Page"/>
         </menu>
     </item>
 

@@ -1,5 +1,6 @@
 package com.digitalgarden.gameswap.activity;
 
+import android.content.Context;
 import android.support.v7.app.AppCompatActivity;
 
 /**
@@ -8,4 +9,9 @@ import android.support.v7.app.AppCompatActivity;
 
 public class Activity_Base extends AppCompatActivity {
     protected final String TAG = getClass().getSimpleName();
+
+
+    protected Context getContext() {
+        return this;
+    }
 }

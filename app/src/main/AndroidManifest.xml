@@ -23,8 +23,11 @@
         <activity
             android:name=".activity.CreateAccountActivity"
             android:label="Create Account"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
+            android:theme="@style/AppTheme.NoActionBar"/>
+
+        <activity
+            android:name=".activity.ProductListActivity"
+            android:label="Product Page"/>
 
     </application>
 

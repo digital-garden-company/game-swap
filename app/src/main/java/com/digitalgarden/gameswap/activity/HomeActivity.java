@@ -109,8 +109,8 @@ public class HomeActivity extends Activity_Base implements NavigationView.OnNavi
         if (id == R.id.nav_create_account) {
             Intent i = new Intent(HomeActivity.this, CreateAccountActivity.class);
             startActivity(i);
-        } else if (id == R.id.nav_sign_in) {
-
+        }
+        else if (id == R.id.nav_sign_in) {
             // Choose authentication providers
             List<AuthUI.IdpConfig> providers = Arrays.asList(
                     new AuthUI.IdpConfig.Builder(AuthUI.EMAIL_PROVIDER).build());
@@ -123,11 +123,12 @@ public class HomeActivity extends Activity_Base implements NavigationView.OnNavi
                     .setAvailableProviders(providers)
                     .build(),
                 RC_SIGN_IN);
-        } else if (id == R.id.nav_share) {
-
-        } else if (id == R.id.nav_send) {
-
         }
+        else if (id == R.id.nav_product_page) {
+            Intent i = new Intent(HomeActivity.this, ProductListActivity.class);
+            startActivity(i);
+        }
+
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
