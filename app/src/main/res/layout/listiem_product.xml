@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/activity_notifications_cell_2"
+    style="@style/block"
+    android:padding="16dp">
+
+    <ImageView
+        android:id="@+id/product_iamge"
+        android:layout_width="96dp"
+        android:layout_height="96dp"
+        android:background="@color/blue"
+        android:scaleType="fitXY"
+        android:layout_centerVertical="true"
+        android:layout_alignParentLeft="true" />
+
+    <RelativeLayout
+        style="@style/block"
+        android:layout_toRightOf="@id/product_iamge"
+        android:layout_alignTop="@id/product_iamge"
+        android:layout_alignBottom="@id/product_iamge"
+        android:paddingLeft="16dp">
+
+        <TextView
+            android:id="@+id/product_title"
+            style="@style/text_subheader"
+            android:text="Title" />
+
+        <TextView
+            android:id="@+id/product_price"
+            style="@style/text_caption"
+            android:layout_below="@id/product_title"
+            android:text="Price" />
+
+        <TextView
+            android:id="@+id/product_description"
+            style="@style/text_caption"
+            android:layout_below="@id/product_price"
+            android:text="Description" />
+
+        <TextView
+            android:id="@+id/product_location"
+            style="@style/text_caption"
+            android:layout_alignParentBottom="true"
+            android:text="Location" />
+
+        <ImageView
+            style="@style/wrap"
+            android:layout_alignParentRight="true"
+            android:src="@drawable/ic_action_overflow"/>
+
+        <TextView
+            android:id="@+id/product_timestamp"
+            style="@style/text_caption"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentRight="true"
+            android:text="Timestamp" />
+
+    </RelativeLayout>
+
+</RelativeLayout>

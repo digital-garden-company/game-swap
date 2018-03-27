@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.widget.ListView;
 
 import com.digitalgarden.gameswap.R;
+import com.digitalgarden.gameswap.adapter.AdapterListProduct;
 import com.digitalgarden.gameswap.adapter.AdapterListText;
 
 import java.util.ArrayList;
@@ -23,7 +24,7 @@ public class ProductListActivity extends Activity_Base {
         strings.add("Carrot");
         strings.add("Digimon");
 
-        AdapterListText adapter = new AdapterListText(getContext(), strings);
+        AdapterListProduct adapter = new AdapterListProduct(getContext(), strings);
         listView.setAdapter(adapter);
     }
 
