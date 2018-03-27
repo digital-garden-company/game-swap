@@ -1,4 +1,4 @@
-package com.digitalgarden.gameswap;
+package com.digitalgarden.gameswap.activity;
 
 import android.support.v7.app.AppCompatActivity;
 
