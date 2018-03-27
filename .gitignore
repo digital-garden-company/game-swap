@@ -37,6 +37,7 @@ captures/
 
 # IntelliJ
 *.iml
+.idea/
 .idea/*.xml
 .idea/dictionaries
 .idea/libraries
