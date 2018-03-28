@@ -13,12 +13,18 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.GridView;
+import android.widget.ListView;
 
 import com.digitalgarden.gameswap.R;
+import com.digitalgarden.gameswap.adapter.AdapterGridProduct;
+import com.digitalgarden.gameswap.adapter.AdapterGridText;
+import com.digitalgarden.gameswap.adapter.AdapterListProduct;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 
@@ -35,6 +41,13 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
+        setupFloatingActionButton();
+        setupNavigationDrawer();
+        setupFirebase();
+        setupGridview();
+    }
+
+    private void setupFloatingActionButton() {
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,17 +56,36 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
+    }
+
+    private void setupNavigationDrawer() {
+        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
 
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
-        this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+                this, drawer, toolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         drawer.addDrawerListener(toggle);
         toggle.syncState();
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
 
+    }
+
+    private void setupFirebase() {
         mAuth = FirebaseAuth.getInstance();
+    }
+
+    private void setupGridview() {
+        GridView gridView = (GridView) findViewById(R.id.activity_gridview);
+        List<String> strings = new ArrayList<>();
+        strings.add("Apple");
+        strings.add("Banana");
+        strings.add("Carrot");
+        strings.add("Digimon");
+
+        AdapterGridProduct adapter = new AdapterGridProduct(getContext(), strings);
+        gridView.setAdapter(adapter);
     }
 
     @Override

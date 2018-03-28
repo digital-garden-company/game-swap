@@ -11,12 +11,12 @@ import com.digitalgarden.gameswap.R;
 
 import java.util.List;
 
-public class AdapterGridText extends BaseAdapter {
+public class AdapterGridProduct extends BaseAdapter {
 
     Context context;
     List<String> items;
 
-    public AdapterGridText(Context context, List<String> items) {
+    public AdapterGridProduct(Context context, List<String> items) {
         this.context = context;
         this.items = items;
     }
@@ -40,12 +40,10 @@ public class AdapterGridText extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if( convertView == null ){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.griditem_text, parent, false);
+            convertView = inflater.inflate(R.layout.griditem_product, parent, false);
         }
 
         String string = getItem(position);
-        TextView tv = (TextView) convertView.findViewById(android.R.id.text1);
-        tv.setText(string);
 
         return convertView;
     }

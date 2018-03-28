@@ -4,6 +4,7 @@
     style="@style/match" >
 
     <TextView
+        android:id="@android:id/text1"
         style="@style/wrap"
         android:text="Hello World"/>
 

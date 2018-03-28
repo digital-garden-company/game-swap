@@ -12,22 +12,14 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:padding="8dp">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Hello World!"/>
+        android:padding="4dp"
+        android:orientation="vertical"
+        android:clipToPadding="false">
 
         <GridView
             android:id="@+id/activity_gridview"
             style="@style/match"
-            android:gravity="center"
-            android:columnWidth="100dp"
-            android:numColumns="auto_fit"
-            android:verticalSpacing="24dp"
-            android:horizontalSpacing="10dp"
-            android:stretchMode="spacingWidthUniform"  />
+            android:numColumns="2" />
 
     </LinearLayout>
 

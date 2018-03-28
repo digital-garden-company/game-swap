@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    style="@style/block">
+
+    <android.support.v7.widget.CardView
+        style="@style/block"
+        android:layout_margin="4dp"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="2dp">
+
+        <LinearLayout
+            style="@style/block"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:adjustViewBounds="true"
+                android:src="@drawable/console_snes"
+                android:scaleType="fitCenter" />
+
+            <TextView
+                style="@style/text_subheader"
+                android:maxLines="3"
+                android:ellipsize="end"
+                android:text="Super Nintendo"
+                android:layout_margin="8dp"
+                android:layout_gravity="center_horizontal"/>
+
+        </LinearLayout>
+
+    </android.support.v7.widget.CardView>
+
+</LinearLayout>
