@@ -22,7 +22,7 @@ import com.google.firebase.auth.FirebaseUser;
 import java.util.Arrays;
 import java.util.List;
 
-public class HomeActivity extends Activity_Base implements NavigationView.OnNavigationItemSelectedListener {
+public class ActivityHome extends Activity_Base implements NavigationView.OnNavigationItemSelectedListener {
 
     private static final int RC_SIGN_IN = 123;
 
@@ -107,7 +107,7 @@ public class HomeActivity extends Activity_Base implements NavigationView.OnNavi
         int id = item.getItemId();
 
         if (id == R.id.nav_create_account) {
-            Intent i = new Intent(HomeActivity.this, CreateAccountActivity.class);
+            Intent i = new Intent(ActivityHome.this, ActivityCreateAccount.class);
             startActivity(i);
         }
         else if (id == R.id.nav_sign_in) {
@@ -125,7 +125,7 @@ public class HomeActivity extends Activity_Base implements NavigationView.OnNavi
                 RC_SIGN_IN);
         }
         else if (id == R.id.nav_product_page) {
-            Intent i = new Intent(HomeActivity.this, ProductListActivity.class);
+            Intent i = new Intent(ActivityHome.this, ActivityProductList.class);
             startActivity(i);
         }
 

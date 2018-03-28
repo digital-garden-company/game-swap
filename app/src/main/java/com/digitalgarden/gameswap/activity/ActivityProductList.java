@@ -10,7 +10,7 @@ import com.digitalgarden.gameswap.adapter.AdapterListText;
 import java.util.ArrayList;
 import java.util.List;
 
-public class ProductListActivity extends Activity_Base {
+public class ActivityProductList extends Activity_Base {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

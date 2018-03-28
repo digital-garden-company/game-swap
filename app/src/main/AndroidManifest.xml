@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
         <activity
-            android:name=".activity.HomeActivity"
+            android:name=".activity.ActivityHome"
             android:label="@string/app_name"
             android:theme="@style/AppTheme.NoActionBar">
             <intent-filter>
@@ -21,12 +21,12 @@
         </activity>
 
         <activity
-            android:name=".activity.CreateAccountActivity"
+            android:name=".activity.ActivityCreateAccount"
             android:label="Create Account"
             android:theme="@style/AppTheme.NoActionBar"/>
 
         <activity
-            android:name=".activity.ProductListActivity"
+            android:name=".activity.ActivityProductList"
             android:label="Product Page"/>
 
     </application>

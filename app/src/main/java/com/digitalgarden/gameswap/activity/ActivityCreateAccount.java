@@ -19,7 +19,7 @@ import com.google.firebase.auth.FirebaseUser;
  * Created by xuejianyu on 2/15/18.
  */
 
-public class CreateAccountActivity extends Activity_Base {
+public class ActivityCreateAccount extends Activity_Base {
 
     private FirebaseAuth mAuth;
 
@@ -58,7 +58,7 @@ public class CreateAccountActivity extends Activity_Base {
                 } else {
                     // If sign in fails, display a message to the user.
                     Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                    Toast.makeText(CreateAccountActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
+                    Toast.makeText(ActivityCreateAccount.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
 
                     progressDialog.dismiss();
                 }
