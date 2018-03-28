@@ -5,30 +5,32 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.digitalgarden.gameswap.R;
+import com.digitalgarden.gameswap.model.Category;
 
 import java.util.List;
 
-public class AdapterGridProduct extends BaseAdapter {
+public class AdapterGridCategory extends BaseAdapter {
 
     Context context;
-    List<String> items;
+    List<Category> categories;
 
-    public AdapterGridProduct(Context context, List<String> items) {
+    public AdapterGridCategory(Context context, List<Category> categories) {
         this.context = context;
-        this.items = items;
+        this.categories = categories;
     }
 
     @Override
     public int getCount() {
-        return items.size();
+        return categories.size();
     }
 
     @Override
-    public String getItem(int position) {
-        return items.get(position);
+    public Category getItem(int position) {
+        return categories.get(position);
     }
 
     @Override
@@ -40,10 +42,12 @@ public class AdapterGridProduct extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if( convertView == null ){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.griditem_product, parent, false);
+            convertView = inflater.inflate(R.layout.griditem_category, parent, false);
         }
 
-        String string = getItem(position);
+        Category category = getItem(position);
+        ((TextView) convertView.findViewById(R.id.griditem_category_text)).setText(category.name);
+        ((ImageView) convertView.findViewById(R.id.griditem_category_image)).setImageResource(category.resourceId);
 
         return convertView;
     }

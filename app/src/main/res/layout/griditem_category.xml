@@ -14,13 +14,15 @@
             android:orientation="vertical">
 
             <ImageView
+                android:id="@+id/griditem_category_image"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
+                android:layout_height="128dp"
                 android:adjustViewBounds="true"
-                android:src="@drawable/console_snes"
-                android:scaleType="fitCenter" />
+                android:scaleType="centerCrop"
+                android:src="@drawable/console_snes" />
 
             <TextView
+                android:id="@+id/griditem_category_text"
                 style="@style/text_subheader"
                 android:maxLines="3"
                 android:ellipsize="end"

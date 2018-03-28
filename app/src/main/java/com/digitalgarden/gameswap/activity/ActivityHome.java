@@ -14,12 +14,10 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.GridView;
-import android.widget.ListView;
 
 import com.digitalgarden.gameswap.R;
-import com.digitalgarden.gameswap.adapter.AdapterGridProduct;
-import com.digitalgarden.gameswap.adapter.AdapterGridText;
-import com.digitalgarden.gameswap.adapter.AdapterListProduct;
+import com.digitalgarden.gameswap.adapter.AdapterGridCategory;
+import com.digitalgarden.gameswap.model.Category;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -78,13 +76,17 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
 
     private void setupGridview() {
         GridView gridView = (GridView) findViewById(R.id.activity_gridview);
-        List<String> strings = new ArrayList<>();
-        strings.add("Apple");
-        strings.add("Banana");
-        strings.add("Carrot");
-        strings.add("Digimon");
+        List<Category> strings = new ArrayList<>();
+        strings.add(new Category("PS4", R.drawable.console_ps4));
+        strings.add(new Category("Xbox One", R.drawable.console_xboxone));
+        strings.add(new Category("Switch", R.drawable.console_switch));
+        strings.add(new Category("PS3", R.drawable.console_ps3));
+        strings.add(new Category("Xbox 360", R.drawable.console_xbox360));
+        strings.add(new Category("Wii U", R.drawable.console_wiiu));
+        strings.add(new Category("PS2", R.drawable.console_ps2));
+        strings.add(new Category("Wii", R.drawable.console_wii));
 
-        AdapterGridProduct adapter = new AdapterGridProduct(getContext(), strings);
+        AdapterGridCategory adapter = new AdapterGridCategory(getContext(), strings);
         gridView.setAdapter(adapter);
     }
 
