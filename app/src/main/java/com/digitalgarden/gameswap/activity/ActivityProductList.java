@@ -1,6 +1,9 @@
 package com.digitalgarden.gameswap.activity;
 
+import android.content.Intent;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.digitalgarden.gameswap.R;
@@ -26,6 +29,14 @@ public class ActivityProductList extends Activity_Base {
 
         AdapterListProduct adapter = new AdapterListProduct(getContext(), strings);
         listView.setAdapter(adapter);
+
+        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), ActivityProduct.class);
+                startActivity(intent);
+            }
+        });
     }
 
 }

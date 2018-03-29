@@ -61,6 +61,11 @@
         <item name="android:textStyle">bold</item>
     </style>
 
+    <style name="text_body_black" parent="text_base">
+        <item name="android:textSize">@dimen/textsize_body</item>
+        <item name="android:textColor">@color/black</item>
+    </style>
+
     <style name="text_body" parent="text_base">
         <item name="android:textSize">@dimen/textsize_body</item>
         <item name="android:textColor">@color/gray_caption</item>

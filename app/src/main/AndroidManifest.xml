@@ -29,6 +29,10 @@
             android:name=".activity.ActivityProductList"
             android:label="Product Page"/>
 
+        <activity
+            android:name=".activity.ActivityProduct"
+            android:label="Product"/>
+
     </application>
 
 </manifest>
