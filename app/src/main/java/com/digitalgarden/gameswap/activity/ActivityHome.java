@@ -18,6 +18,7 @@ import android.widget.GridView;
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.adapter.AdapterGridCategory;
 import com.digitalgarden.gameswap.model.Category;
+import com.digitalgarden.gameswap.toolbox.Toolbox;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -138,11 +139,48 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
         // Handle navigation view item clicks here.
+        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         int id = item.getItemId();
 
-        if (id == R.id.nav_create_account) {
+        if (id == R.id.nav_home) {
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+        else if (id == R.id.nav_my_post) {
+            Toolbox.showToast(getContext(), "Not yet implemented");
+            return false;
+        }
+        else if (id == R.id.nav_create_post) {
+            Toolbox.showToast(getContext(), "Not yet implemented");
+            return false;
+        }
+        else if (id == R.id.nav_locations) {
+            Intent i = new Intent(ActivityHome.this, ActivityLocations.class);
+            startActivity(i);
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+        else if (id == R.id.nav_settings) {
+            Intent i = new Intent(ActivityHome.this, ActivitySettings.class);
+            startActivity(i);
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+        else if (id == R.id.nav_about) {
+            Intent i = new Intent(ActivityHome.this, ActivityAbout.class);
+            startActivity(i);
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
+        else if (id == R.id.nav_create_account) {
             Intent i = new Intent(ActivityHome.this, ActivityCreateAccount.class);
             startActivity(i);
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
         else if (id == R.id.nav_sign_in) {
             // Choose authentication providers
@@ -157,15 +195,19 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
                     .setAvailableProviders(providers)
                     .build(),
                 RC_SIGN_IN);
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
         else if (id == R.id.nav_product_page) {
             Intent i = new Intent(ActivityHome.this, ActivityProductList.class);
             startActivity(i);
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
-
-
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        return true;
+        else {
+            return false;
+        }
     }
 }

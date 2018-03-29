@@ -33,6 +33,22 @@
             android:name=".activity.ActivityProduct"
             android:label="Product"/>
 
+        <activity
+            android:name=".activity.ActivityLocations"
+            android:label="Locations"/>
+
+        <activity
+            android:name=".activity.ActivitySettings"
+            android:label="Settings"/>
+
+        <activity
+            android:name=".activity.ActivityAbout"
+            android:label="About"/>
+
+        <activity
+            android:name=".activity.ActivityMock"
+            android:label="Mock"/>
+
     </application>
 
 </manifest>
