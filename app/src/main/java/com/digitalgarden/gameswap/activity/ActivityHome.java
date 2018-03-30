@@ -1,10 +1,11 @@
 package com.digitalgarden.gameswap.activity;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
-import android.util.Log;
 import android.view.View;
 import android.support.design.widget.NavigationView;
 import android.support.v4.view.GravityCompat;
@@ -18,7 +19,6 @@ import android.widget.GridView;
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.adapter.AdapterGridCategory;
 import com.digitalgarden.gameswap.model.Category;
-import com.digitalgarden.gameswap.toolbox.Toolbox;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -51,7 +51,6 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.d(TAG, "createUserWithEmail:success");
                 Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG).setAction("Action", null).show();
             }
         });
@@ -146,13 +145,55 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
-        else if (id == R.id.nav_my_post) {
-            Toolbox.showToast(getContext(), "Not yet implemented");
-            return false;
+        else if (id == R.id.nav_my_posts) {
+            // 1. Instantiate an AlertDialog.Builder with its constructor
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setTitle("My Posts")
+                    .setMessage("Please add a Gameswap account to view your posts, do you want to add one now?")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // FIRE ZE MISSILES!
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            // 3. Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
         else if (id == R.id.nav_create_post) {
-            Toolbox.showToast(getContext(), "Not yet implemented");
-            return false;
+            // 1. Instantiate an AlertDialog.Builder with its constructor
+            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+
+            // 2. Chain together various setter methods to set the dialog characteristics
+            builder.setTitle("Create Post")
+                    .setMessage("Creating a post requires a user account, would you like to create a user account now?")
+                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // FIRE ZE MISSILES!
+                        }
+                    })
+                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            // User cancelled the dialog
+                        }
+                    });
+
+            // 3. Get the AlertDialog from create()
+            AlertDialog dialog = builder.create();
+            dialog.show();
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
         }
         else if (id == R.id.nav_locations) {
             Intent i = new Intent(ActivityHome.this, ActivityLocations.class);

@@ -9,9 +9,9 @@
             android:icon="@drawable/ic_menu_slideshow"
             android:title="Home"/>
         <item
-            android:id="@+id/nav_my_post"
+            android:id="@+id/nav_my_posts"
             android:icon="@drawable/ic_menu_manage"
-            android:title="My Post"/>
+            android:title="My Posts"/>
         <item
             android:id="@+id/nav_create_post"
             android:icon="@drawable/ic_menu_share"
