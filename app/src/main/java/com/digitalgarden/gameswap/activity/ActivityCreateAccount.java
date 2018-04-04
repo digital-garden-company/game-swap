@@ -41,6 +41,9 @@ public class ActivityCreateAccount extends Activity_Base {
     }
 
     private void createAccount(String email, String password) {
+        if(email.isEmpty() || password.isEmpty()) {
+            return;
+        }
 
         final ProgressDialog progressDialog = new ProgressDialog(this);
         progressDialog.show();

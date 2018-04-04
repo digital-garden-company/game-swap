@@ -8,7 +8,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme">
+        android:theme="@style/AppTheme"
+        android:largeHeap="true">
         <activity
             android:name=".activity.ActivityHome"
             android:label="@string/app_name"
@@ -44,6 +45,10 @@
         <activity
             android:name=".activity.ActivityAbout"
             android:label="About"/>
+
+        <activity
+            android:name=".activity.ActivityCreatePost"
+            android:label="Create Post"/>
 
         <activity
             android:name=".activity.ActivityMock"

@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <LinearLayout
+        style="@style/match"
+        android:orientation="vertical"
+        android:padding="8dp">
+
+        <TextView
+            style="@style/text_subheader"
+            android:text="Game"/>
+
+        <EditText
+            style="@style/block"
+            android:inputType="textCapCharacters"/>
+
+        <TextView
+            style="@style/text_subheader"
+            android:text="Price"/>
+
+        <EditText
+            style="@style/block"
+            android:inputType="text"/>
+
+        <TextView
+            style="@style/text_subheader"
+            android:text="Location"/>
+
+        <EditText
+            style="@style/block"
+            android:inputType="text"/>
+
+        <TextView
+            style="@style/text_subheader"
+            android:text="Description"/>
+
+        <EditText
+            style="@style/block"
+            android:inputType="text"/>
+
+        <Button
+            android:id="@+id/button_submit"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Submit"/>
+
+    </LinearLayout>
+
+</android.support.constraint.ConstraintLayout>

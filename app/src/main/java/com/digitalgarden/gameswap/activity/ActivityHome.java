@@ -179,7 +179,8 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
                     .setMessage("Creating a post requires a user account, would you like to create a user account now?")
                     .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                         public void onClick(DialogInterface dialog, int id) {
-                            // FIRE ZE MISSILES!
+                            Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
+                            startActivity(i);
                         }
                     })
                     .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
