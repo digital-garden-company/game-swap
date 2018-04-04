@@ -40,10 +40,14 @@
             <item
                 android:id="@+id/nav_sign_in"
                 android:icon="@drawable/ic_menu_gallery"
-                android:title="Log In"/>
+                android:title="Sign In"/>
+            <item
+                android:id="@+id/nav_sign_out"
+                android:icon="@drawable/ic_menu_slideshow"
+                android:title="Sign out"/>
             <item
                 android:id="@+id/nav_product_page"
-                android:icon="@drawable/ic_menu_slideshow"
+                android:icon="@drawable/ic_menu_manage"
                 android:title="Product Page"/>
         </menu>
     </item>

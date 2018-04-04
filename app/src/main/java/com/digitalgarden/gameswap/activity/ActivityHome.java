@@ -19,6 +19,7 @@ import android.widget.GridView;
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.adapter.AdapterGridCategory;
 import com.digitalgarden.gameswap.model.Category;
+import com.digitalgarden.gameswap.toolbox.Toolbox;
 import com.firebase.ui.auth.AuthUI;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -146,52 +147,64 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
             return true;
         }
         else if (id == R.id.nav_my_posts) {
-            // 1. Instantiate an AlertDialog.Builder with its constructor
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            if(isSignedIn()) {
+//                Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
+//                startActivity(i);
+            }
+            else {
+                // 1. Instantiate an AlertDialog.Builder with its constructor
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-            // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setTitle("My Posts")
-                    .setMessage("Please add a Gameswap account to view your posts, do you want to add one now?")
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // FIRE ZE MISSILES!
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
+                // 2. Chain together various setter methods to set the dialog characteristics
+                builder.setTitle("My Posts")
+                        .setMessage("Please add a Gameswap account to view your posts, do you want to add one now?")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // FIRE ZE MISSILES!
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
 
-            // 3. Get the AlertDialog from create()
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                // 3. Get the AlertDialog from create()
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
 
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
         else if (id == R.id.nav_create_post) {
-            // 1. Instantiate an AlertDialog.Builder with its constructor
-            AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
+            if(isSignedIn()) {
+                Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
+                startActivity(i);
+            }
+            else {
+                // 1. Instantiate an AlertDialog.Builder with its constructor
+                AlertDialog.Builder builder = new AlertDialog.Builder(getContext());
 
-            // 2. Chain together various setter methods to set the dialog characteristics
-            builder.setTitle("Create Post")
-                    .setMessage("Creating a post requires a user account, would you like to create a user account now?")
-                    .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
-                            startActivity(i);
-                        }
-                    })
-                    .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
-                        public void onClick(DialogInterface dialog, int id) {
-                            // User cancelled the dialog
-                        }
-                    });
+                // 2. Chain together various setter methods to set the dialog characteristics
+                builder.setTitle("Create Post")
+                        .setMessage("Creating a post requires a user account, would you like to create a user account now?")
+                        .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
+                                startActivity(i);
+                            }
+                        })
+                        .setNegativeButton("Cancel", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                // User cancelled the dialog
+                            }
+                        });
 
-            // 3. Get the AlertDialog from create()
-            AlertDialog dialog = builder.create();
-            dialog.show();
+                // 3. Get the AlertDialog from create()
+                AlertDialog dialog = builder.create();
+                dialog.show();
+            }
 
             drawer.closeDrawer(GravityCompat.START);
             return true;
@@ -241,6 +254,12 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
+        else if (id == R.id.nav_sign_out) {
+            FirebaseAuth.getInstance().signOut();
+
+            drawer.closeDrawer(GravityCompat.START);
+            return true;
+        }
         else if (id == R.id.nav_product_page) {
             Intent i = new Intent(ActivityHome.this, ActivityProductList.class);
             startActivity(i);
@@ -249,6 +268,17 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
             return true;
         }
         else {
+            return false;
+        }
+    }
+
+    private boolean isSignedIn() {
+        FirebaseUser user = FirebaseAuth.getInstance().getCurrentUser();
+        if (user != null) {
+            // User is signed in
+            return true;
+        } else {
+            // No user is signed in
             return false;
         }
     }
