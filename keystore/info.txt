@@ -1,0 +1,3 @@
+keystore password: swapgame
+key alias: gameswap
+key password: swapgame
