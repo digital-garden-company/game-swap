@@ -9,6 +9,10 @@ public class Toolbox {
         Log.d(tag, message);
     }
 
+    public static void warn(String tag, String message, Throwable throwable) {
+        Log.w(tag, message, throwable);
+    }
+
     public static void showToast(Context context, String text) {
         Toast.makeText(context, text, Toast.LENGTH_SHORT).show();
     }

@@ -10,9 +10,10 @@
 
         <TextView
             style="@style/text_subheader"
-            android:text="Game"/>
+            android:text="Name"/>
 
         <EditText
+            android:id="@+id/edittext_name"
             style="@style/block"
             android:inputType="textCapCharacters"/>
 
@@ -21,6 +22,7 @@
             android:text="Price"/>
 
         <EditText
+            android:id="@+id/edittext_price"
             style="@style/block"
             android:inputType="text"/>
 
@@ -29,6 +31,7 @@
             android:text="Location"/>
 
         <EditText
+            android:id="@+id/edittext_location"
             style="@style/block"
             android:inputType="text"/>
 
@@ -37,6 +40,7 @@
             android:text="Description"/>
 
         <EditText
+            android:id="@+id/edittext_description"
             style="@style/block"
             android:inputType="text"/>
 
