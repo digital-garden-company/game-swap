@@ -7,8 +7,7 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.digitalgarden.gameswap.R;
-import com.digitalgarden.gameswap.adapter.AdapterListProduct;
-import com.digitalgarden.gameswap.adapter.AdapterListText;
+import com.digitalgarden.gameswap.adapter.AdapterListProductDeprecated;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -27,7 +26,7 @@ public class ActivityProductList extends Activity_Base {
         strings.add("Carrot");
         strings.add("Digimon");
 
-        AdapterListProduct adapter = new AdapterListProduct(getContext(), strings);
+        AdapterListProductDeprecated adapter = new AdapterListProductDeprecated(getContext(), strings);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -38,5 +37,4 @@ public class ActivityProductList extends Activity_Base {
             }
         });
     }
-
 }

@@ -148,8 +148,8 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         }
         else if (id == R.id.nav_my_posts) {
             if(isSignedIn()) {
-//                Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
-//                startActivity(i);
+                Intent i = new Intent(ActivityHome.this, ActivityMyPosts.class);
+                startActivity(i);
             }
             else {
                 // 1. Instantiate an AlertDialog.Builder with its constructor

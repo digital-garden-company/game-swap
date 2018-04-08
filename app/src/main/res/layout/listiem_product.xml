@@ -21,14 +21,14 @@
         android:paddingLeft="16dp">
 
         <TextView
-            android:id="@+id/product_title"
+            android:id="@+id/product_name"
             style="@style/text_subheader"
             android:text="Title" />
 
         <TextView
             android:id="@+id/product_price"
             style="@style/text_caption"
-            android:layout_below="@id/product_title"
+            android:layout_below="@id/product_name"
             android:text="Price" />
 
         <TextView

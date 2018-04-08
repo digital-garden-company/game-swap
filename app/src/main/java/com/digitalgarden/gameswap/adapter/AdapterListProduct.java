@@ -8,8 +8,9 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.digitalgarden.gameswap.R;
+import com.digitalgarden.gameswap.toolbox.Toolbox;
+import com.google.firebase.firestore.DocumentSnapshot;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -17,41 +18,34 @@ import java.util.List;
  */
 public class AdapterListProduct extends BaseAdapter {
 
+    public final String TAG = getClass().getSimpleName();
+
     Context context;
-    List<String> strings = new ArrayList<>();
+    List<DocumentSnapshot> documentSnapshots;
 
     public AdapterListProduct(Context context) {
         this.context = context;
     }
 
-    public AdapterListProduct(Context context, List<String> strings) {
+    public AdapterListProduct(Context context, List<DocumentSnapshot> documentSnapshots) {
         this.context = context;
-        this.strings = strings;
-    }
-
-    public void add(String value) {
-        strings.add(value);
-    }
-
-
-    public void remove(int position) {
-        strings.remove(position);
+        this.documentSnapshots = documentSnapshots;
     }
 
     @Override
     public int getCount() {
-        if(strings == null) {
+        if(documentSnapshots == null) {
             return 0;}
 
-        return strings.size();
+        return documentSnapshots.size();
     }
 
     @Override
-    public String getItem(int position) {
-        if(strings == null) {
-            return "";}
+    public DocumentSnapshot getItem(int position) {
+        if(documentSnapshots == null) {
+            return null;}
 
-        return strings.get(position);
+        return documentSnapshots.get(position);
     }
 
     @Override
@@ -61,15 +55,19 @@ public class AdapterListProduct extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
+        Toolbox.log(TAG, "getView() - position: " + position);
+
         if(convertView == null) {
             Context context = parent.getContext();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.listiem_product, parent, false); }
 
-        String currentString = getItem(position);
+        DocumentSnapshot documentSnapshot = getItem(position);
 
-//        TextView tv = (TextView) convertView.findViewById(android.R.id.text1);
-//        tv.setText(currentString);
+        ((TextView) convertView.findViewById(R.id.product_name)).setText(documentSnapshot.getString("name"));
+        ((TextView) convertView.findViewById(R.id.product_price)).setText(documentSnapshot.getString("price"));
+        ((TextView) convertView.findViewById(R.id.product_description)).setText(documentSnapshot.getString("description"));
+        ((TextView) convertView.findViewById(R.id.product_location)).setText(documentSnapshot.getString("location"));
 
         return convertView;
     }

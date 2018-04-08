@@ -51,6 +51,10 @@
             android:label="Create Post"/>
 
         <activity
+            android:name=".activity.ActivityMyPosts"
+            android:label="My Posts"/>
+
+        <activity
             android:name=".activity.ActivityMock"
             android:label="Mock"/>
 

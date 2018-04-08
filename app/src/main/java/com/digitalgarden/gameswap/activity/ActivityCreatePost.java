@@ -23,7 +23,6 @@ public class ActivityCreatePost extends Activity_Base {
     // Access a Cloud Firestore instance from your Activity
     FirebaseFirestore firestore = FirebaseFirestore.getInstance();
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -81,4 +80,3 @@ public class ActivityCreatePost extends Activity_Base {
             });
     }
 }
-
