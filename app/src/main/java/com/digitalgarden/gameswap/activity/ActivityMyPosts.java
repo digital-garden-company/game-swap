@@ -72,13 +72,14 @@ public class ActivityMyPosts extends Activity_Base {
 
     private void updateUI(List<Post> posts) {
         ListView listView = findViewById(R.id.activity_listview);
-        AdapterListPost adapter = new AdapterListPost(getContext(), posts);
+        final AdapterListPost adapter = new AdapterListPost(getContext(), posts);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), ActivityProduct.class);
+                Intent intent = new Intent(getContext(), ActivityMyPost.class);
+                intent.putExtra(ActivityMyPost.KEY_POST, adapter.getItem(position));
                 startActivity(intent);
             }
         });
