@@ -42,12 +42,12 @@ public class AdapterGridCategory extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         if( convertView == null ){
             LayoutInflater inflater = LayoutInflater.from(context);
-            convertView = inflater.inflate(R.layout.griditem_category, parent, false);
+            convertView = inflater.inflate(R.layout.griditem_category, null);
         }
 
         Category category = getItem(position);
         ((TextView) convertView.findViewById(R.id.griditem_category_text)).setText(category.name);
-        ((ImageView) convertView.findViewById(R.id.griditem_category_image)).setImageResource(category.resourceId);
+        //((ImageView) convertView.findViewById(R.id.griditem_category_image)).setImageResource(category.resourceId);
 
         return convertView;
     }

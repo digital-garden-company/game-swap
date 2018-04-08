@@ -19,7 +19,7 @@
                 android:layout_height="128dp"
                 android:adjustViewBounds="true"
                 android:scaleType="centerCrop"
-                android:src="@drawable/console_snes" />
+                android:src="@drawable/console_ps2" />
 
             <TextView
                 android:id="@+id/griditem_category_text"
