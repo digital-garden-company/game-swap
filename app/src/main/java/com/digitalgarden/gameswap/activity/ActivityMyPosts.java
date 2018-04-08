@@ -8,9 +8,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 
 import com.digitalgarden.gameswap.R;
-import com.digitalgarden.gameswap.adapter.AdapterListProduct;
-import com.digitalgarden.gameswap.adapter.AdapterListProductDeprecated;
+import com.digitalgarden.gameswap.adapter.AdapterListPost;
+import com.digitalgarden.gameswap.model.Post;
 import com.digitalgarden.gameswap.toolbox.Toolbox;
+import com.digitalgarden.gameswap.view.ProgressDialogGeneric;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
@@ -42,20 +43,26 @@ public class ActivityMyPosts extends Activity_Base {
             return;
         }
 
+        final ProgressDialogGeneric dialog = new ProgressDialogGeneric(getContext());
+        dialog.show();
+
         firestore.collection("posts")
             .get()
             .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
                 @Override
                 public void onComplete(@NonNull Task<QuerySnapshot> task) {
                     Toolbox.log(TAG, "getMyPosts() - onComplete()");
+                    dialog.dismiss();
 
                     if (task.isSuccessful()) {
-                        List<DocumentSnapshot> documentSnapshots = new ArrayList<>();
+                        List<Post> posts = new ArrayList<>();
                         for (DocumentSnapshot document : task.getResult()) {
                             //Toolbox.log(TAG, document.getId() + " => " + document.getData());
-                            documentSnapshots.add(document);
+                            Post post = document.toObject(Post.class);
+                            //Toolbox.log(TAG, "post: " + post);
+                            posts.add(post);
                         }
-                        updateUI(documentSnapshots);
+                        updateUI(posts);
                     } else {
                         Toolbox.warn(TAG, "Error getting documents.", task.getException());
                     }
@@ -63,9 +70,9 @@ public class ActivityMyPosts extends Activity_Base {
             });
     }
 
-    private void updateUI(List<DocumentSnapshot> documentSnapshots) {
+    private void updateUI(List<Post> posts) {
         ListView listView = findViewById(R.id.activity_listview);
-        AdapterListProduct adapter = new AdapterListProduct(getContext(), documentSnapshots);
+        AdapterListPost adapter = new AdapterListPost(getContext(), posts);
         listView.setAdapter(adapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {

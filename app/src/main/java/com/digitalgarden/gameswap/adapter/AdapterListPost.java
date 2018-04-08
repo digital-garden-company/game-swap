@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.digitalgarden.gameswap.R;
+import com.digitalgarden.gameswap.model.Post;
 import com.digitalgarden.gameswap.toolbox.Toolbox;
 import com.google.firebase.firestore.DocumentSnapshot;
 
@@ -16,36 +17,32 @@ import java.util.List;
 /**
  * Created by xuejianyu on 12/17/16.
  */
-public class AdapterListProduct extends BaseAdapter {
+public class AdapterListPost extends BaseAdapter {
 
     public final String TAG = getClass().getSimpleName();
 
     Context context;
-    List<DocumentSnapshot> documentSnapshots;
+    List<Post> posts;
 
-    public AdapterListProduct(Context context) {
+    public AdapterListPost(Context context, List<Post> posts) {
         this.context = context;
-    }
-
-    public AdapterListProduct(Context context, List<DocumentSnapshot> documentSnapshots) {
-        this.context = context;
-        this.documentSnapshots = documentSnapshots;
+        this.posts = posts;
     }
 
     @Override
     public int getCount() {
-        if(documentSnapshots == null) {
+        if(posts == null) {
             return 0;}
 
-        return documentSnapshots.size();
+        return posts.size();
     }
 
     @Override
-    public DocumentSnapshot getItem(int position) {
-        if(documentSnapshots == null) {
+    public Post getItem(int position) {
+        if(posts == null) {
             return null;}
 
-        return documentSnapshots.get(position);
+        return posts.get(position);
     }
 
     @Override
@@ -55,19 +52,18 @@ public class AdapterListProduct extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        Toolbox.log(TAG, "getView() - position: " + position);
+        //Toolbox.log(TAG, "getView() - position: " + position);
 
         if(convertView == null) {
             Context context = parent.getContext();
             LayoutInflater layoutInflater = LayoutInflater.from(context);
             convertView = layoutInflater.inflate(R.layout.listiem_product, parent, false); }
 
-        DocumentSnapshot documentSnapshot = getItem(position);
-
-        ((TextView) convertView.findViewById(R.id.product_name)).setText(documentSnapshot.getString("name"));
-        ((TextView) convertView.findViewById(R.id.product_price)).setText(documentSnapshot.getString("price"));
-        ((TextView) convertView.findViewById(R.id.product_description)).setText(documentSnapshot.getString("description"));
-        ((TextView) convertView.findViewById(R.id.product_location)).setText(documentSnapshot.getString("location"));
+        Post post = getItem(position);
+        ((TextView) convertView.findViewById(R.id.product_name)).setText(post.name);
+        ((TextView) convertView.findViewById(R.id.product_price)).setText(post.price);
+        ((TextView) convertView.findViewById(R.id.product_description)).setText(post.description);
+        ((TextView) convertView.findViewById(R.id.product_location)).setText(post.location);
 
         return convertView;
     }
