@@ -15,7 +15,7 @@
         <EditText
             android:id="@+id/edittext_name"
             style="@style/block"
-            android:inputType="textCapCharacters"/>
+            android:inputType="textCapWords"/>
 
         <TextView
             style="@style/text_subheader"
@@ -24,7 +24,7 @@
         <EditText
             android:id="@+id/edittext_price"
             style="@style/block"
-            android:inputType="text"/>
+            android:inputType="numberDecimal"/>
 
         <TextView
             style="@style/text_subheader"
@@ -33,7 +33,7 @@
         <EditText
             android:id="@+id/edittext_location"
             style="@style/block"
-            android:inputType="text"/>
+            android:inputType="number"/>
 
         <TextView
             style="@style/text_subheader"
@@ -42,7 +42,7 @@
         <EditText
             android:id="@+id/edittext_description"
             style="@style/block"
-            android:inputType="text"/>
+            android:inputType="textCapSentences"/>
 
         <Button
             android:id="@+id/button_submit"
