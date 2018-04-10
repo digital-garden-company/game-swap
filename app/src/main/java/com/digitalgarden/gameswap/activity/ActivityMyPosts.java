@@ -47,26 +47,27 @@ public class ActivityMyPosts extends Activity_Base {
         dialog.show();
 
         firestore.collection("posts")
-            .get()
-            .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
-                @Override
-                public void onComplete(@NonNull Task<QuerySnapshot> task) {
-                    Toolbox.log(TAG, "getMyPosts() - onComplete()");
-                    dialog.dismiss();
+                .whereEqualTo("userUid", user.getUid())
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Toolbox.log(TAG, "getMyPosts() - onComplete()");
+                        dialog.dismiss();
 
-                    if (task.isSuccessful()) {
-                        List<Post> posts = new ArrayList<>();
-                        for (DocumentSnapshot document : task.getResult()) {
-                            //Toolbox.log(TAG, document.getId() + " => " + document.getData());
-                            Post post = document.toObject(Post.class);
-                            //Toolbox.log(TAG, "post: " + post);
-                            posts.add(post);
+                        if (task.isSuccessful()) {
+                            List<Post> posts = new ArrayList<>();
+                            for (DocumentSnapshot document : task.getResult()) {
+                                //Toolbox.log(TAG, document.getId() + " => " + document.getData());
+                                Post post = document.toObject(Post.class);
+                                //Toolbox.log(TAG, "post: " + post);
+                                posts.add(post);
+                            }
+                            updateUI(posts);
+                        } else {
+                            Toolbox.warn(TAG, "Error getting documents.", task.getException());
                         }
-                        updateUI(posts);
-                    } else {
-                        Toolbox.warn(TAG, "Error getting documents.", task.getException());
                     }
-                }
             });
     }
 
