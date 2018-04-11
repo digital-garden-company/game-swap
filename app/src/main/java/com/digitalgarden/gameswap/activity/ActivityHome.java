@@ -5,6 +5,7 @@ import android.app.SearchManager;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
@@ -25,11 +26,19 @@ import android.widget.TextView;
 
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.adapter.AdapterGridCategory;
+import com.digitalgarden.gameswap.adapter.AdapterGridPost;
 import com.digitalgarden.gameswap.model.Category;
+import com.digitalgarden.gameswap.model.Post;
 import com.digitalgarden.gameswap.toolbox.Toolbox;
+import com.digitalgarden.gameswap.view.ProgressDialogGeneric;
 import com.firebase.ui.auth.AuthUI;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QuerySnapshot;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -39,6 +48,8 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
 
     private static final int RC_SIGN_IN = 123;
 
+    // Access a Cloud Firestore instance from your Activity
+    private FirebaseFirestore firestore;
     private FirebaseAuth mAuth;
 
     @Override
@@ -51,7 +62,7 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         setupFloatingActionButton();
         setupNavigationDrawer();
         setupFirebase();
-        setupGridview();
+        getPosts();
     }
 
     private void setupFloatingActionButton() {
@@ -81,22 +92,43 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
     }
 
     private void setupFirebase() {
+        firestore = FirebaseFirestore.getInstance();
         mAuth = FirebaseAuth.getInstance();
     }
 
-    private void setupGridview() {
-        GridView gridView = (GridView) findViewById(R.id.activity_gridview);
-        List<Category> strings = new ArrayList<>();
-        strings.add(new Category("PS4", R.drawable.console_ps4));
-        strings.add(new Category("Xbox One", R.drawable.console_xboxone));
-        strings.add(new Category("Switch", R.drawable.console_switch));
-        strings.add(new Category("PS3", R.drawable.console_ps3));
-        strings.add(new Category("Xbox 360", R.drawable.console_xbox360));
-        strings.add(new Category("Wii U", R.drawable.console_wiiu));
-        strings.add(new Category("PS2", R.drawable.console_ps2));
-        strings.add(new Category("Wii", R.drawable.console_wii));
+    private void getPosts() {
+        final ProgressDialogGeneric dialog = new ProgressDialogGeneric(getContext());
+        dialog.show();
 
-        AdapterGridCategory adapter = new AdapterGridCategory(getContext(), strings);
+        firestore.collection("posts")
+                .get()
+                .addOnCompleteListener(new OnCompleteListener<QuerySnapshot>() {
+                    @Override
+                    public void onComplete(@NonNull Task<QuerySnapshot> task) {
+                        Toolbox.log(TAG, "getMyPosts() - onComplete()");
+                        dialog.dismiss();
+
+                        if (task.isSuccessful()) {
+                            List<Post> posts = new ArrayList<>();
+                            for (DocumentSnapshot document : task.getResult()) {
+                                //Toolbox.log(TAG, document.getId() + " => " + document.getData());
+                                Post post = document.toObject(Post.class);
+                                //Toolbox.log(TAG, "post: " + post);
+                                posts.add(post);
+                            }
+
+                            setupGridview(posts);
+                        } else {
+                            Toolbox.warn(TAG, "Error getting documents.", task.getException());
+                        }
+                    }
+                });
+
+    }
+
+    private void setupGridview(List<Post> posts) {
+        GridView gridView = (GridView) findViewById(R.id.activity_gridview);
+        AdapterGridPost adapter = new AdapterGridPost(getContext(), posts);
         gridView.setAdapter(adapter);
     }
 
