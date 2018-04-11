@@ -13,7 +13,7 @@ public class ActivityPost extends Activity_Base {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_post);
+        setContentView(R.layout.layout_post);
 
         Post post = (Post) getIntent().getExtras().getSerializable(KEY_POST);
 
