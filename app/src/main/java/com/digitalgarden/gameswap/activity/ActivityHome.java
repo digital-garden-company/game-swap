@@ -20,6 +20,7 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.inputmethod.EditorInfo;
+import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 import android.widget.TextView;
@@ -128,8 +129,17 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
 
     private void setupGridview(List<Post> posts) {
         GridView gridView = (GridView) findViewById(R.id.activity_gridview);
-        AdapterGridPost adapter = new AdapterGridPost(getContext(), posts);
+        final AdapterGridPost adapter = new AdapterGridPost(getContext(), posts);
         gridView.setAdapter(adapter);
+
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
+                Intent intent = new Intent(getContext(), ActivityMyPost.class);
+                intent.putExtra(ActivityMyPost.KEY_POST, adapter.getItem(position));
+                startActivity(intent);
+            }
+        });
     }
 
     @Override
