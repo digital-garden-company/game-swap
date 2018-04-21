@@ -49,6 +49,7 @@
             android:paddingBottom="8dp">
 
             <TextView
+                android:id="@+id/layout_post_contact"
                 style="@style/text_subheader"
                 android:layout_alignParentBottom="true"
                 android:layout_centerHorizontal="true"

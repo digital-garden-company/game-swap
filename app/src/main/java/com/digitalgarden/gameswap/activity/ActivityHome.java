@@ -137,7 +137,7 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                Intent intent = new Intent(getContext(), ActivityMyPost.class);
+                Intent intent = new Intent(getContext(), ActivityPost.class);
                 intent.putExtra(ActivityMyPost.KEY_POST, adapter.getItem(position));
                 startActivity(intent);
             }
@@ -211,11 +211,8 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
 
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        Toolbox.log(TAG, "onActivityResult - 1");
         if (requestCode == REQUESTCODE_REFRESH_SCREEN) {
-            Toolbox.log(TAG, "onActivityResult - 2");
             if (resultCode == RESULT_OK) {
-                Toolbox.log(TAG, "onActivityResult - 3");
                 getPosts();
             }
         }

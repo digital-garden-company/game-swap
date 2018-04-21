@@ -46,11 +46,11 @@ public class ActivityCreatePost extends Activity_Base {
         // Create a new user with a first and last name
         Map<String, Object> post = new HashMap<>();
         post.put("userUid", user.getUid());
-        post.put("name", ((EditText) findViewById(R.id.edittext_name)).getText().toString());
-        post.put("price", ((EditText) findViewById(R.id.edittext_price)).getText().toString());
-        post.put("location", ((EditText) findViewById(R.id.edittext_location)).getText().toString());
-        post.put("description", ((EditText) findViewById(R.id.edittext_description)).getText().toString());
-        post.put("contactInfo", user.getEmail());
+        post.put("name", ((EditText) findViewById(R.id.edittext_name)).getText().toString().trim());
+        post.put("price", ((EditText) findViewById(R.id.edittext_price)).getText().toString().trim());
+        post.put("location", ((EditText) findViewById(R.id.edittext_location)).getText().toString().trim());
+        post.put("description", ((EditText) findViewById(R.id.edittext_description)).getText().toString().trim());
+        post.put("contactEmail", user.getEmail());
 
         final ProgressDialogGeneric dialog = new ProgressDialogGeneric(getContext());
         dialog.show();
