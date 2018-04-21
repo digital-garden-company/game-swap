@@ -1,0 +1,3 @@
+[O] Add contact info for the Create Post screen
+[O] Home screen should reload after a post is created
+[-] Implement the contact button when viewing the post screen

@@ -28,11 +28,6 @@ public class ActivityCreatePost extends Activity_Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_post);
 
-        ((EditText) findViewById(R.id.edittext_name)).setText("Naruto");
-        ((EditText) findViewById(R.id.edittext_price)).setText("$50.00");
-        ((EditText) findViewById(R.id.edittext_location)).setText("78705");
-        ((EditText) findViewById(R.id.edittext_description)).setText("Engage in ultimate ninja battles");
-
         findViewById(R.id.button_submit).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -55,6 +50,7 @@ public class ActivityCreatePost extends Activity_Base {
         post.put("price", ((EditText) findViewById(R.id.edittext_price)).getText().toString());
         post.put("location", ((EditText) findViewById(R.id.edittext_location)).getText().toString());
         post.put("description", ((EditText) findViewById(R.id.edittext_description)).getText().toString());
+        post.put("contactInfo", user.getEmail());
 
         final ProgressDialogGeneric dialog = new ProgressDialogGeneric(getContext());
         dialog.show();
@@ -67,6 +63,7 @@ public class ActivityCreatePost extends Activity_Base {
                 public void onSuccess(DocumentReference documentReference) {
                     Toolbox.log(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
                     dialog.dismiss();
+                    setResult(RESULT_OK);
                     finish();
                 }
             })

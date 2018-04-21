@@ -47,6 +47,8 @@ import java.util.List;
 
 public class ActivityHome extends Activity_Base implements NavigationView.OnNavigationItemSelectedListener {
 
+    static final int REQUESTCODE_REFRESH_SCREEN = 1001;  // The request code
+
     private static final int RC_SIGN_IN = 123;
 
     // Access a Cloud Firestore instance from your Activity
@@ -189,28 +191,6 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
             }
         });
 
-
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            /*
-//                This event does not fire when the search query is empty.
-//                The Android SDK does this intentionally but inconvenient for
-//                us.
-//             */
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                Toolbox.log(TAG, "onQueryTextSubmit()");
-//                Toolbox.hideKeyboard(getActivity());
-//
-//                return true;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                Toolbox.log(TAG, "onQueryTextChange()");
-//                return false;
-//            }
-//        });
-
         return true;
     }
 
@@ -229,6 +209,18 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
+        Toolbox.log(TAG, "onActivityResult - 1");
+        if (requestCode == REQUESTCODE_REFRESH_SCREEN) {
+            Toolbox.log(TAG, "onActivityResult - 2");
+            if (resultCode == RESULT_OK) {
+                Toolbox.log(TAG, "onActivityResult - 3");
+                getPosts();
+            }
+        }
+    }
+
     @SuppressWarnings("StatementWithEmptyBody")
     @Override
     public boolean onNavigationItemSelected(MenuItem item) {
@@ -242,8 +234,8 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         }
         else if (id == R.id.nav_my_posts) {
             if(isSignedIn()) {
-                Intent i = new Intent(ActivityHome.this, ActivityMyPosts.class);
-                startActivity(i);
+                Intent intent = new Intent(ActivityHome.this, ActivityMyPosts.class);
+                startActivity(intent);
             }
             else {
                 // 1. Instantiate an AlertDialog.Builder with its constructor
@@ -273,8 +265,8 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         }
         else if (id == R.id.nav_create_post) {
             if(isSignedIn()) {
-                Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
-                startActivity(i);
+                Intent intent = new Intent(ActivityHome.this, ActivityCreatePost.class);
+                startActivityForResult(intent, REQUESTCODE_REFRESH_SCREEN);
             }
             else {
                 // 1. Instantiate an AlertDialog.Builder with its constructor
@@ -304,29 +296,29 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
             return true;
         }
         else if (id == R.id.nav_locations) {
-            Intent i = new Intent(ActivityHome.this, ActivityLocations.class);
-            startActivity(i);
+            Intent intent = new Intent(ActivityHome.this, ActivityLocations.class);
+            startActivity(intent);
 
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
         else if (id == R.id.nav_settings) {
-            Intent i = new Intent(ActivityHome.this, ActivitySettings.class);
-            startActivity(i);
+            Intent intent = new Intent(ActivityHome.this, ActivitySettings.class);
+            startActivity(intent);
 
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
         else if (id == R.id.nav_about) {
-            Intent i = new Intent(ActivityHome.this, ActivityAbout.class);
-            startActivity(i);
+            Intent intent = new Intent(ActivityHome.this, ActivityAbout.class);
+            startActivity(intent);
 
             drawer.closeDrawer(GravityCompat.START);
             return true;
         }
         else if (id == R.id.nav_create_account) {
-            Intent i = new Intent(ActivityHome.this, ActivityCreateAccount.class);
-            startActivity(i);
+            Intent intent = new Intent(ActivityHome.this, ActivityCreateAccount.class);
+            startActivity(intent);
 
             drawer.closeDrawer(GravityCompat.START);
             return true;
