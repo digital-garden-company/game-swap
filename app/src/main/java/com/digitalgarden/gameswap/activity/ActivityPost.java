@@ -7,8 +7,16 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.android.volley.VolleyError;
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.model.Post;
+import com.digitalgarden.gameswap.toolbox.Toolbox;
+import com.igdb.api_android_java.callback.onSuccessCallback;
+import com.igdb.api_android_java.model.APIWrapper;
+import com.igdb.api_android_java.model.Parameters;
+
+import org.json.JSONArray;
+import org.json.JSONException;
 
 public class ActivityPost extends Activity_Base {
 
@@ -44,6 +52,31 @@ public class ActivityPost extends Activity_Base {
                 }
             }
         });
+
+
+//        APIWrapper wrapper = new APIWrapper(getContext(), "d8a1627fe5be8b5f56ed9d32330182bb");
+//        Parameters params = new Parameters()
+//                .addIds("1942");
+////                .addFields("*")
+////                .addOrder("published_at:desc");
+//
+//        wrapper.games(params, new onSuccessCallback(){
+//            @Override
+//            public void onSuccess(JSONArray result) {
+//                Toolbox.log(TAG, "onSuccess()");
+//                try {
+//                    Toolbox.log(TAG, result.toString(4));
+//                } catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//
+//            @Override
+//            public void onError(VolleyError error) {
+//                Toolbox.log(TAG, "onError()");
+//                // Do something on error
+//            }
+//        });
 
     }
 }

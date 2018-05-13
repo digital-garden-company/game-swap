@@ -4,7 +4,7 @@ android {
     compileSdkVersion 26
     defaultConfig {
         applicationId "com.digitalgarden.gameswap"
-        minSdkVersion 19
+        minSdkVersion 21
         targetSdkVersion 26
         versionCode 4
         versionName "0.3"
@@ -23,6 +23,7 @@ dependencies {
     compile 'com.google.firebase:firebase-firestore:11.4.2'
 
     implementation fileTree(dir: 'libs', include: ['*.jar'])
+    implementation 'com.github.igdb:api-android-java:1.1'
     implementation 'com.android.support:appcompat-v7:26.1.0'
     implementation 'com.android.support:design:26.1.0'
     implementation 'com.android.support.constraint:constraint-layout:1.0.2'
