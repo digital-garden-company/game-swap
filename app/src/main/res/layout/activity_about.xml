@@ -12,6 +12,15 @@
             style="@style/text_headline"
             android:text="This app is designed for users to buy and sell games directly to other users. The reason we made this app is so that people can give us money. We really want your money. Please give us your money."/>
 
+        <Button
+            android:id="@+id/layout_button"
+            style="@style/block"
+            android:text="Take Picture"/>
+
+        <ImageView
+            android:id="@+id/layout_image"
+            style="@style/wrap" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
