@@ -9,7 +9,7 @@ public class ProgressDialogGeneric extends ProgressDialog {
         super(context);
 
         //setTitle("Title");
-        setMessage("Loading..");
+        setMessage("Loading...");
         setIndeterminate(false);
         setCancelable(true);
     }

@@ -18,6 +18,7 @@ import android.widget.ImageView;
 
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.toolbox.Toolbox;
+import com.digitalgarden.gameswap.view.ProgressDialogGeneric;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
@@ -43,7 +44,7 @@ public class ActivityAbout extends Activity_Base {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_about);
 
-        imageView = (ImageView) findViewById(R.id.layout_image);
+        imageView = findViewById(R.id.layout_image);
 
         if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) != PackageManager.PERMISSION_GRANTED) {
             findViewById(R.id.layout_button_takepicture).setEnabled(false);
@@ -115,10 +116,17 @@ public class ActivityAbout extends Activity_Base {
         // Get the data from an ImageView as bytes
         imageView.setDrawingCacheEnabled(true);
         imageView.buildDrawingCache();
+        if((imageView.getDrawable()) == null) {
+            Toolbox.showToast(getContext(), "There is no image to upload");
+            return;
+        }
         Bitmap bitmap = ((BitmapDrawable) imageView.getDrawable()).getBitmap();
         ByteArrayOutputStream baos = new ByteArrayOutputStream();
         bitmap.compress(Bitmap.CompressFormat.JPEG, 100, baos);
         byte[] data = baos.toByteArray();
+
+        final ProgressDialogGeneric dialog = new ProgressDialogGeneric(getContext());
+        dialog.show();
 
         UploadTask uploadTask = imageRef.putBytes(data);
         uploadTask.addOnFailureListener(new OnFailureListener() {
@@ -126,12 +134,14 @@ public class ActivityAbout extends Activity_Base {
             public void onFailure(@NonNull Exception exception) {
                 // Handle unsuccessful uploads
                 Toolbox.log(TAG, "onFailure()");
+                dialog.dismiss();
             }
         }).addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
             @Override
             public void onSuccess(UploadTask.TaskSnapshot taskSnapshot) {
                 // taskSnapshot.getMetadata() contains file metadata such as size, content-type, etc.
                 Toolbox.log(TAG, "onSuccess()");
+                dialog.dismiss();
             }
         });
     }

@@ -61,7 +61,7 @@
             android:label="About"/>
 
         <activity
-            android:name=".activity.ActivityCreatePost"
+            android:name=".activity.ActivityCreateListing"
             android:label="Create Post"/>
 
         <activity

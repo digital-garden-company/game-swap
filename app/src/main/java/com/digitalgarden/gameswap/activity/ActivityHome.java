@@ -7,7 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.MenuItemCompat;
 import android.support.v7.widget.SearchView;
 import android.view.KeyEvent;
@@ -26,9 +25,7 @@ import android.widget.GridView;
 import android.widget.TextView;
 
 import com.digitalgarden.gameswap.R;
-import com.digitalgarden.gameswap.adapter.AdapterGridCategory;
 import com.digitalgarden.gameswap.adapter.AdapterGridPost;
-import com.digitalgarden.gameswap.model.Category;
 import com.digitalgarden.gameswap.model.Post;
 import com.digitalgarden.gameswap.toolbox.Toolbox;
 import com.digitalgarden.gameswap.view.ProgressDialogGeneric;
@@ -262,7 +259,7 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
         }
         else if (id == R.id.nav_create_post) {
             if(isSignedIn()) {
-                Intent intent = new Intent(ActivityHome.this, ActivityCreatePost.class);
+                Intent intent = new Intent(ActivityHome.this, ActivityCreateListing.class);
                 startActivityForResult(intent, REQUESTCODE_REFRESH_SCREEN);
             }
             else {
@@ -274,7 +271,7 @@ public class ActivityHome extends Activity_Base implements NavigationView.OnNavi
                         .setMessage("Creating a post requires a user account, would you like to create a user account now?")
                         .setPositiveButton("Ok", new DialogInterface.OnClickListener() {
                             public void onClick(DialogInterface dialog, int id) {
-                                Intent i = new Intent(ActivityHome.this, ActivityCreatePost.class);
+                                Intent i = new Intent(ActivityHome.this, ActivityCreateListing.class);
                                 startActivity(i);
                             }
                         })

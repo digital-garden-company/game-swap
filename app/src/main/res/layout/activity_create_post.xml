@@ -50,6 +50,16 @@
             android:layout_height="wrap_content"
             android:text="Submit"/>
 
+        <Button
+            android:id="@+id/button_takepicture"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Take Picture"/>
+
+        <ImageView
+            android:id="@+id/layout_image"
+            style="@style/wrap" />
+
     </LinearLayout>
 
 </android.support.constraint.ConstraintLayout>
