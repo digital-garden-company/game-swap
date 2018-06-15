@@ -48,19 +48,7 @@ public class ActivityPost extends Activity_Base {
         ((TextView) findViewById(R.id.layout_post_location)).setText(post.location);
         ((TextView) findViewById(R.id.layout_post_description)).setText(post.description);
 
-        if(post.imageFileName != null && !post.imageFileName.isEmpty()) {
-            ImageView imageView = findViewById(R.id.layout_post_iamge);
-
-            StorageReference storageRef = storage.getReference();
-            StorageReference imageRef = storageRef.child("images/" + post.imageFileName);
-
-            // Download directly from StorageReference using Glide
-            // (See MyAppGlideModule for Loader registration)
-            Glide.with(this /* context */)
-                    .load(imageRef)
-                    .into(imageView);
-
-        }
+        loadImageUsingGlide();
 
         findViewById(R.id.layout_post_contact).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,6 +87,22 @@ public class ActivityPost extends Activity_Base {
                     Toolbox.log(TAG, "onFailure: " + exception.getMessage());
                 }
             });
+        }
+    }
+
+    public void loadImageUsingGlide() {
+        if(post.imageFileName != null && !post.imageFileName.isEmpty()) {
+            ImageView imageView = findViewById(R.id.layout_post_iamge);
+
+            StorageReference storageRef = storage.getReference();
+            StorageReference imageRef = storageRef.child("images/" + post.imageFileName);
+
+            // Download directly from StorageReference using Glide
+            // (See MyAppGlideModule for Loader registration)
+            Glide.with(this /* context */)
+                    .load(imageRef)
+                    .into(imageView);
+
         }
     }
 }
