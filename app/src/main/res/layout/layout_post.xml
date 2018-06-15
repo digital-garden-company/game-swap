@@ -8,11 +8,11 @@
         android:orientation="vertical">
 
         <ImageView
-            android:id="@+id/product_iamge"
+            android:id="@+id/layout_post_iamge"
             style="@style/block"
             android:layout_height="256dp"
             android:background="@color/red"
-            android:scaleType="fitXY" />
+            android:scaleType="centerInside" />
 
         <LinearLayout
             style="@style/block"

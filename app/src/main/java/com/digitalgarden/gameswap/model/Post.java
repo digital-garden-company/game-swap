@@ -10,6 +10,7 @@ public class Post implements Serializable {
     public String location;
     public String description;
     public String contactEmail;
+    public String imageFileName;
 
     public Post() {
         // Default constructor required for calls to DataSnapshot.getValue(Post.class)
@@ -17,7 +18,7 @@ public class Post implements Serializable {
 
     @Override
     public String toString() {
-        return String.format("%s, %s, %s, %s, %s, %s", userUid, name, price, location, description, contactEmail);
+        return String.format("%s, %s, %s, %s, %s, %s, %s", userUid, name, price, location, description, contactEmail, imageFileName);
     }
 
 }
