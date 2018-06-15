@@ -5,15 +5,21 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.bumptech.glide.Glide;
 import com.digitalgarden.gameswap.R;
 import com.digitalgarden.gameswap.model.Category;
 import com.digitalgarden.gameswap.model.Post;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
 import java.util.List;
 
 public class AdapterGridPost extends BaseAdapter {
+
+    FirebaseStorage storage = FirebaseStorage.getInstance();
 
     Context context;
     List<Post> posts;
@@ -49,6 +55,20 @@ public class AdapterGridPost extends BaseAdapter {
         ((TextView) convertView.findViewById(R.id.griditem_post_name)).setText(post.name);
         ((TextView) convertView.findViewById(R.id.griditem_post_price)).setText(post.price);
         ((TextView) convertView.findViewById(R.id.griditem_post_description)).setText(post.description);
+
+        if(post.imageFileName != null && !post.imageFileName.isEmpty()) {
+            ImageView imageView = convertView.findViewById(R.id.griditem_post_image);
+
+            StorageReference storageRef = storage.getReference();
+            StorageReference imageRef = storageRef.child("images/" + post.imageFileName);
+
+            // Download directly from StorageReference using Glide
+            // (See MyAppGlideModule for Loader registration)
+            Glide.with(context /* context */)
+                    .load(imageRef)
+                    .into(imageView);
+
+        }
 
         return convertView;
     }
